@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirector</title>
+</head>
+<body>
+    <script>
+        // Object where keys are TMDB IDs and values are original URLs
+        const originalUrls = {
+            "299536": "https://playerjs.onrender.com/player.html?file=https://krako.pratikbhandare.workers.dev/148:/Bot%20Uploads/Avengers%20Infinity%20War%202018%20BluRay%201080p%20Dual%20Audio%20[Hindi%20BD%205.1%20+%20English%20DD%205.1]%20x264%20ESub%20-%20mkvCinemas%20[Telly].mkv&poster=https://www.themoviedb.org/t/p/original/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg&title=Avengers Infinty War Hindi", // Example mapping for movie ID 123
+            "8373":"https://playerjs.onrender.com/player.html?file=https://www.febbox.com/hls/main/1720245.m3u8&subtitle=[English]https://images.febbox.com/subtilte/2021/09/01/612f50efe42cb.srt&poster=https://www.themoviedb.org/t/p/original/zbdoCe1meTyy0v1fsIxZ9Q0ef3H.jpg&title=Transformers: Revenge of the Fallen 2009",//Transformers: Revenge of the Fallen
+            "68727":"https://playerjs.onrender.com/player.html?file=[720p]https://quadrawebshort.pratikbhandare.workers.dev/SFAFfX,[1080p]https://quadrawebshort.pratikbhandare.workers.dev/eBzW7N,[1440p]https://quadrawebshort.pratikbhandare.workers.dev/4XC7fx,[2160p]https://quadrawebshort.pratikbhandare.workers.dev/Dxs4zQ&subtitle=[English]https://images.febbox.com/subtilte/2022/04/13/62561bd45f81f.srt&poster=https://www.themoviedb.org/t/p/original/pF8O2rjd8RHEKxBWk2r58ERMBb5.jpg&title=Trance 2013",//Trance
+            // Add more TMDB ID - original URL pairs as needed
+        };
+
+        // Function to handle the redirection
+        function handleRedirect() {
+            // Extract the TMDB ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const tmdbId = urlParams.get('tmdb_id');
+
+            // Check if the TMDB ID exists and redirect if it does
+            if (tmdbId && originalUrls.hasOwnProperty(tmdbId)) {
+                const originalUrl = originalUrls[tmdbId];
+                window.location.href = originalUrl;
+            } else {
+                console.error("Invalid or missing TMDB ID");
+            }
+        }
+
+        // Call the function when the page loads
+        handleRedirect();
+    </script>
+</body>
+</html>
